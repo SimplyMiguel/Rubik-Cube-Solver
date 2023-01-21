@@ -1,0 +1,146 @@
+// console.log("BEGGINING TO CHECK IF THIS IS WORKING\n\n")
+
+// const test = new Cube()
+// let asString = test.asString()
+
+// console.log(asString)
+// console.log(test.isSolved())
+
+// test.move("U")
+
+// // test.randomize()
+// asString = test.asString()
+// console.log(asString)
+// console.log(test.isSolved())
+
+
+// // NOW SOLVING 
+// Cube.initSolver()
+// let solved = test.solve()
+// console.log(solved)
+
+// // NOW WHAT IS YOUR GOAL NOW!! 
+// // FIGURE OUT A WAY TO LINK COLORS TO MOVES MADE ON THE CUBE/ FIGURE OUT HOW TO SCRAMBLE IN A WAY THAT WILL WORK WITH YOUR WEBSITE IDEA 
+
+// U = red 
+// F = yellow
+// D = Orange 
+// R = blue 
+// B = white 
+// L = green 
+
+
+//             +------------+
+//             | U1  U2  U3 |
+//             |            |
+//             | U4  U5  U6 |
+//             |            |
+//             | U7  U8  U9 |
+// +------------+------------+------------+------------+
+// | L1  L2  L3 | F1  F2  F3 | R1  R2  R3 | B1  B2  B3 |
+// |            |            |            |            |
+// | L4  L5  L6 | F4  F5  F6 | R4  R5  R6 | B4  B5  B6 |
+// |            |            |            |            |
+// | L7  L8  L9 | F7  F8  F9 | R7  R8  R9 | B7  B8  B9 |
+// +------------+------------+------------+------------+
+//             | D1  D2  D3 |
+//             |            |
+//             | D4  D5  D6 |
+//             |            |
+//             | D7  D8  D9 |
+//             +------------+
+
+// let test2 = Cube.fromString("URUUFUUFUBBBRRRRRRRDRFDFFDFDBDDBDDLDFFFLLLLLLLULBUBBUB")
+// console.log("This is test2 (astring made from Cube.fromString(str)\n\n", test2.asString())
+// console.log(test2.solve())
+
+// console.log("\n\nEND OF THE CONSOLE TO SEE IF ITS WORKING")
+
+$(function(){
+
+    // canvas variables
+    var myCanvas=document.getElementById("myCanvas");
+    var ctx=myCanvas.getContext("2d");
+    var $myCanvas=$("#myCanvas");
+    var myCanvasOffset=$myCanvas.offset();
+    var offsetX=myCanvasOffset.left;
+    var offsetY=myCanvasOffset.top;
+    var scrollX=$myCanvas.scrollLeft();
+    var scrollY=$myCanvas.scrollTop();
+
+    // set styles
+    ctx.fillStyle="red";
+    ctx.strokeStyle="black";
+    ctx.lineWidth=10;
+
+    var square = {
+        points:[{x: 10, y:150}, {x: 150, y: 150}, {x: 150, y: 300}, {x: 10, y: 300}],
+        message: "I am a mfing square"
+    }
+
+    // save the triangle and parallelogram in a shapes[] array
+
+    var shapes=[];
+    shapes.push(square);
+
+    // function to draw (but not fill/stroke) a shape
+    // (needed because isPointInPath only tests the last defined path)
+
+    function define(shape){
+        var points=shape.points;
+        ctx.beginPath();
+        ctx.moveTo(points[0].x,points[0].y);
+        for(var i=1;i<points.length;i++){
+            ctx.lineTo(points[i].x,points[i].y);
+        }
+    }
+
+    // function to display a shape on the canvas (define + fill + stroke)
+
+    function draw(shape){
+        define(shape);
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    // display the triangle and parallelogram
+    draw(square);
+
+
+    // called when user clicks the mouse
+    var colors = {
+                1: "pink", 
+                2: "orange", 
+                3: "white"
+            };
+            
+    function handleMouseDown(e){
+      e.preventDefault();
+
+      // get the mouse position
+      var mouseX=parseInt(e.clientX-offsetX);
+      var mouseY=parseInt(e.clientY-offsetY);
+
+      // iterate each shape in the shapes array
+      for(var i=0;i<shapes.length;i++){
+          var shape=shapes[i];
+          // define the current shape
+          define(shape);
+          // test if the mouse is in the current shape
+          if(ctx.isPointInPath(mouseX,mouseY)){
+              // if inside, display the shape's message
+            // define(shape);
+            var rando = Math.floor(Math.random() * 3) + 1
+            var tempColor = colors[rando];
+            ctx.fillStyle=tempColor;
+            ctx.fill();
+            ctx.stroke();
+          }
+      }
+
+    }
+
+    // listen for mousedown events
+    $("#myCanvas").mousedown(function(e){handleMouseDown(e);});
+
+});

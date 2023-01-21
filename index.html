@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rubik Cube Solver</title>
+  <!--   Linking CSS Style Sheet   -->
+  <link rel="stylesheet" href="./styles.css">
+
+  <!--   Linking Google Fonts   -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <header>Rubik Cube Solver</header>
+  <canvas id="Canvas" width="1200" height="600" style="margin-top: 80px; border: 20px solid black;">
+    
+
+  </canvas>  <br>
+
+  <button id="SolveBTN" onclick="solve()" >Solve</button>
+  <div id="ansLocation"> <!-- Location where the canvas for the steps to take on the cube will be -->
+  </div>
+  <div> <!-- SOURCES -->
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/lib/cube.js"></script>
+    <script src="/lib/solve.js" ></script>
+    <script src="/lib/async.js"></script>
+    <script src="index.js"></script>
+  </div>
+</body>
+</html>

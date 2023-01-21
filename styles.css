@@ -1,0 +1,36 @@
+/*  
+    # <-- are used to define ID's // USED for single elements
+    . <-- are used to define classes // USED for multiple elements
+*/ 
+
+body {
+    background-color: rgb(176, 66, 66);
+}
+
+header{
+    text-align: center;
+    font-family: 'Rubik', sans-serif; /* <<<---- rules to specify family imported from google fonts*/
+    font-size: 35px;
+    color: whitesmoke;
+    background-color: rgba(105, 37, 37, 0.733);
+    position: fixed;
+    top: 0; left: 0;
+
+
+
+    width: 100%;
+    height: 50px;
+}
+
+#SolveBTN{
+    font-family: 'Rubik', sans-serif;
+    font-size: 35px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    /* border: 5px solid black; */
+    background-color: green;
+
+    cursor: pointer;
+    /* display: inline-block; */
+}
+
